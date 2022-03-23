@@ -34,7 +34,7 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: "[Github Actions] srs-survey frontend has been pushed to Docker.\nStarting deployment"
+          message: "[Github Actions] srs-survey-backend has been pushed to Docker.\nStarting deployment"
   deploy:
     needs: build
     runs-on: ubuntu-latest
