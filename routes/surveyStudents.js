@@ -9,24 +9,25 @@ router.route('/').get((req,res)=>{
 
 
 router.route('/add').post((req,res)=>{
+    try{
+        let docList = []
+        req.body.surveyQuestions.forEach(element => {
+            var newSurveyStudent = new SurveyStudent({
+                name:element.name,
+                response:element.response,
+                type:element.type
+            })
+            docList.push(newSurveyStudent)
+        });
+    
+        SurveyStudent.insertMany(docList)
+        .then(()=>{res.json("student survey added to the database!")})
+        .catch(err=>res.status(400).json('Error: '+err))
+    }catch(err){
+        res.status(400).json("Don't play play leh")
+    }
 
-    let docList = []
 
-    console.log(req.body)
-    req.body.surveyQuestions.forEach(element => {
-        var newSurveyStudent = new SurveyStudent({
-            name:element.name,
-            response:element.response,
-            type:element.type
-        })
-        docList.push(newSurveyStudent)
-    });
-
-    console.log(docList)
-    SurveyStudent.insertMany(docList)
-
-    .then(()=>{res.json("student survey added to the database!")})
-    .catch(err=>res.status(400).json('Error: '+err))
 })
 
 module.exports = router
