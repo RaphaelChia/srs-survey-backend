@@ -1,4 +1,4 @@
-name: SRS Survey CICD
+name: SRS Survey Backend CICD
 
 on:
   push:
