@@ -25,7 +25,7 @@ router.route('/add').post((req,res)=>{
     console.log(docList)
     SurveyStudent.insertMany(docList)
 
-    .then(()=>{res.json("student survey added!")})
+    .then(()=>{res.json("student survey added to the database!")})
     .catch(err=>res.status(400).json('Error: '+err))
 })
 
