@@ -14,6 +14,9 @@ const surveyStudentSchema = new Schema({
     type:{
         type:Number,
         required:true
+    },
+    ip:{
+        type:String
     }
 },{
     timestamps:true,
