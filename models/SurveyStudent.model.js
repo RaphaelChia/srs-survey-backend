@@ -17,6 +17,12 @@ const surveyStudentSchema = new Schema({
     },
     ip:{
         type:String
+    },
+    countryOrigin:{
+        type:String
+    },
+    countryOriginCode:{
+        type:String
     }
 },{
     timestamps:true,
