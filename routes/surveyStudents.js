@@ -10,14 +10,13 @@ router.route('/').get((req,res)=>{
 
 router.route('/add').post((req,res)=>{
     try{
-        console.log(req.headers['x-forwarded-for'] || req.socket.remoteAddress)
         let docList = []
         req.body.surveyQuestions.forEach(element => {
             var newSurveyStudent = new SurveyStudent({
                 name:element.name,
                 response:element.response,
                 type:element.type,
-                ip:req.headers['x-forwarded-for'] || req.socket.remoteAddress
+                ip:req.body.ip
             })
             docList.push(newSurveyStudent)
         });
