@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const SurveyStudent = require('../models/SurveyStudent.model');
+const { v4: uuidv4 } = require('uuid');
 
 router.route('/').get((req,res)=>{
     SurveyStudent.find()
@@ -18,7 +19,8 @@ router.route('/add').post((req,res)=>{
                 type:element.type,
                 ip:req.body.ip,
                 countryOrigin:req.body.countryOrigin,
-                countryOriginCode:req.body.countryOriginCode
+                countryOriginCode:req.body.countryOriginCode,
+                submissionId:uuidv4()
             })
             docList.push(newSurveyStudent)
         });

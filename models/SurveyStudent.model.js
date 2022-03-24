@@ -23,6 +23,9 @@ const surveyStudentSchema = new Schema({
     },
     countryOriginCode:{
         type:String
+    },
+    submissionId:{
+        type:String
     }
 },{
     timestamps:true,
