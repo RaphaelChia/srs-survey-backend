@@ -25,13 +25,13 @@ router.route('/add').post((req,res)=>{
             })
             docList.push(newSurveyStudent)
         });
-        console.log(docList)
-        // SurveyStudent.insertMany(docList)
-        // .then(()=>{res.json("student survey added to the database!")})
-        // .catch(err=>{
-        //     console.log("Insert failed leh. "+ err)
-        //     res.status(400).json('Error: '+err)
-        // })
+        // console.log(docList)
+        SurveyStudent.insertMany(docList)
+        .then(()=>{res.json("student survey added to the database!")})
+        .catch(err=>{
+            console.log("Insert failed leh. "+ err)
+            res.status(400).json('Error: '+err)
+        })
     }catch(err){
         console.log("Wah what happened orh? "+err)
         res.status(400).json("Don't play play leh")
