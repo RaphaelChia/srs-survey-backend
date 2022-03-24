@@ -16,7 +16,9 @@ router.route('/add').post((req,res)=>{
                 name:element.name,
                 response:element.response,
                 type:element.type,
-                ip:req.body.ip
+                ip:req.body.ip,
+                countryOrigin:req.body.countryOrigin,
+                countryOriginCode:req.body.countryOriginCode
             })
             docList.push(newSurveyStudent)
         });
