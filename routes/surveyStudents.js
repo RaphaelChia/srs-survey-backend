@@ -12,6 +12,7 @@ router.route('/').get((req,res)=>{
 router.route('/add').post((req,res)=>{
     try{
         let docList = []
+        const uuid = uuidv4()
         req.body.surveyQuestions.forEach(element => {
             var newSurveyStudent = new SurveyStudent({
                 name:element.name,
@@ -20,17 +21,17 @@ router.route('/add').post((req,res)=>{
                 ip:req.body.ip,
                 countryOrigin:req.body.countryOrigin,
                 countryOriginCode:req.body.countryOriginCode,
-                submissionId:uuidv4()
+                submissionId:uuid
             })
             docList.push(newSurveyStudent)
         });
-    
-        SurveyStudent.insertMany(docList)
-        .then(()=>{res.json("student survey added to the database!")})
-        .catch(err=>{
-            console.log("Insert failed leh. "+ err)
-            res.status(400).json('Error: '+err)
-        })
+        console.log(docList)
+        // SurveyStudent.insertMany(docList)
+        // .then(()=>{res.json("student survey added to the database!")})
+        // .catch(err=>{
+        //     console.log("Insert failed leh. "+ err)
+        //     res.status(400).json('Error: '+err)
+        // })
     }catch(err){
         console.log("Wah what happened orh? "+err)
         res.status(400).json("Don't play play leh")
