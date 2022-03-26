@@ -22,7 +22,7 @@ app.get("/",(req,res)=>{
 
 const surveyStudentRouter = require('./routes/surveyStudents')
 app.use('/surveyStudents',surveyStudentRouter)
-
+app.disable('x-powered-by')
 app.listen(port,()=>{
     console.log(`Listening on port ${port}`)
 })
