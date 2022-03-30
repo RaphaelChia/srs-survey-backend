@@ -47,6 +47,9 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           script: |
+<<<<<<< HEAD
             sudo bash ./testScript/ess2etest.sh
+=======
+>>>>>>> a01d1cc (revert git workflow)
             sudo bash ./deployment/srs-survey-backend.sh
             
