@@ -7,7 +7,7 @@ const hIntercep = require('../interceptors/headerInterceptors')()
 router.route('/get-json').get(hIntercep.checkAuthForRetrieval,(req,res)=>{
     SurveyStudent.find()
     .then(surveys=>res.json(surveys))
-    .catch(err=>res.status(400).send(err))
+    .catch(err=>res.status(400).json(err))
 })
 
 router.route('/get-csv').get(hIntercep.checkAuthForRetrieval,(req,res)=>{
