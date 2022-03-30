@@ -9,7 +9,6 @@ const port=process.env.PORT || 3000;
 
 app.use(cors())
 app.use(express.json())
-
 const uri = process.env.MONGO_URI;
 mongoose.connect(uri)
 const connection = mongoose.connection;
@@ -21,7 +20,9 @@ app.get("/",(req,res)=>{
 })
 
 const surveyStudentRouter = require('./routes/surveyStudents')
+const surveyTeacherRouter = require('./routes/surveyTeachers')
 app.use('/surveyStudents',surveyStudentRouter)
+app.use('/surveyTeachers',surveyTeacherRouter)
 app.disable('x-powered-by')
 app.listen(port,()=>{
     console.log(`Listening on port ${port}`)

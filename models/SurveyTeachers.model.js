@@ -31,11 +31,6 @@ const surveyTeacherSchema = new Schema({
     timestamps:true,
 })
 
-// const surveyTeacherSchema = new Schema({
-//     surveyQuestions:[surveyQuestion]
-// },{
-//     timestamps:true,
-// })
 
 const SurveyTeacher = mongoose.model('SurveyTeacher',surveyTeacherSchema)
 module.exports = SurveyTeacher
