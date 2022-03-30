@@ -1,4 +1,5 @@
 const errorMessage = {
-    httpResponse:"Don't play play leh"
+    httpResponse:"Don't play play leh",
+    malformedResponse:"Malformed body"
 }
 module.exports = errorMessage

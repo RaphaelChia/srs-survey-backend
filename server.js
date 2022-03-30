@@ -19,8 +19,8 @@ app.get("/",(req,res)=>{
     res.send("Hello world "+uri)
 })
 
-const surveyStudentRouter = require('./routes/surveyStudents')
-const surveyTeacherRouter = require('./routes/surveyTeachers')
+const surveyStudentRouter = require('./routes/surveyStudentsRoute')
+const surveyTeacherRouter = require('./routes/surveyTeachersRoute')
 app.use('/surveyStudents',surveyStudentRouter)
 app.use('/surveyTeachers',surveyTeacherRouter)
 app.disable('x-powered-by')

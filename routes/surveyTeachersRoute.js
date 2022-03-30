@@ -2,6 +2,8 @@ const router = require('express').Router();
 const { v4: uuidv4 } = require('uuid');
 const errorMessage = require('../constants/errorMessages');
 const regex = require('../constants/regex');
+const successMessage = require('../constants/successMessages');
+const bodyInterceptor = require('../interceptors/bodyValidatorInterceptors')();
 const MailingEntry = require('../models/MailEntry.model');
 const SurveyTeacher = require('../models/SurveyTeachers.model');
 const hIntercep = require('../interceptors/headerInterceptors')()
@@ -51,7 +53,7 @@ router.route('/get-csv').get(hIntercep.checkAuthForRetrieval,(req,res)=>{
 })
 
 
-router.route('/add').post((req,res)=>{
+router.route('/add').post(bodyInterceptor.validBody,(req,res)=>{
     try{
         let docList = []
         const uuid = uuidv4()
@@ -69,7 +71,7 @@ router.route('/add').post((req,res)=>{
             
         });
         // console.log(docList)
-        MailingEntry.insertMany(docList)
+        SurveyTeacher.insertMany(docList)
         .then(()=>{res.json("Teacher survey added to the database!")})
         .catch(err=>{
             console.log("Insert failed leh. "+ err)
@@ -100,8 +102,26 @@ router.route('/mailing-list').post(async (req,res)=>{
             res.status(400).json(errorMessage.httpResponse)
         })
     } catch(err){
+        console.log(`Error adding to mailing list. ${err}`)
         res.status(400).json(errorMessage.httpResponse)
     }
 })
 
+
+router.route('/mailing-list').delete(async(req,res)=>{
+    try{
+        if(!req.body.email){
+            console.log(`${errorMessage.malformedResponse} from `,req.socket.remoteAddress, req.body)
+            res.status(400).json(errorMessage.httpResponse)
+            return
+        }
+        MailingEntry.deleteOne({email:`${req.body.email}`})
+        .then(success=>res.json(`${req.body.email} ${successMessage.mailerDeleteSuccess}`))
+        .catch(error=>res.status(400).json(`${req.body.email}`))
+
+    }catch(err){
+        console.log(`Error removing from mailing list. ${err}`)
+        res.status(400).json(errorMessage.httpResponse)
+    }
+})
 module.exports = router

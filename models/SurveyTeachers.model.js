@@ -1,33 +1,8 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const surveySchema = require('../Schema/SurveySchema');
 const Schema = mongoose.Schema;
 
-const surveyTeacherSchema = new Schema({
-    name:{
-        type:String,
-        required:true,
-        trim:true
-    },
-    response:{
-        type:Array,
-        required:true
-    },
-    type:{
-        type:Number,
-        required:true
-    },
-    ip:{
-        type:String
-    },
-    countryOrigin:{
-        type:String
-    },
-    countryOriginCode:{
-        type:String
-    },
-    submissionId:{
-        type:String
-    }
-},{
+const surveyTeacherSchema = new Schema(surveySchema,{
     timestamps:true,
 })
 
