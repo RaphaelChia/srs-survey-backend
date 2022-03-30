@@ -47,6 +47,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           script: |
-            sudo bash ./testScript/e2etest.sh
+            sudo bash ./testScript/ess2etest.sh
             sudo bash ./deployment/srs-survey-backend.sh
             
