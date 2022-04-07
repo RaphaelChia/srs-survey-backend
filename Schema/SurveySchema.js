@@ -9,8 +9,6 @@ const surveySchema = {
     },
     response:{
         type:Array,
-        required:true,
-        validate:notEmptyValidator,
         default:undefined
     },
     type:{
